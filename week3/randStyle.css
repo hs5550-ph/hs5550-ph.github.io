@@ -1,0 +1,29 @@
+body {
+    background-color: white;
+}
+
+img {
+    max-height: 40vh;
+    max-width: 40vw;
+    display: block;
+    margin: 0.5rem auto;
+}
+
+div.flex-container {
+    font-family: "Bodoni Moda", serif;
+    padding: 3vw;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+
+p {
+    font-size: 20px;
+    font-weight: bold;
+    letter-spacing: -0.03rem;
+    margin:0.1vw 0; 
+    text-align: left;
+}

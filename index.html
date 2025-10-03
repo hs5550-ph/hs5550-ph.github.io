@@ -1,13 +1,49 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>hs5550-ph</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="style.css">
+        <title>Web Development</title>
     </head>
     <body>
-        <h1>Links to websites</h1>
-        <ul>
-            <li><a href="week1/index.html">week 1 link</a></li>
-            <li><a href="week2/index.html">week 2 link</a></li>
-        </ul>
+        <main class="container">
+            <header class="site-header">
+                <h1>Web Development</h1>
+            </header>
+
+            <div class="content">
+                <p>Collection of the weekly assignments</p>
+
+                <nav class="list">
+                    <a class="card" href="week1/index.html">
+                        <span class="card_icon" aria-hidden="true">→</span>
+                        <span class="card_title">Week 1</span>
+                    </a>
+
+                    <a class="card" href="week2/index.html">
+                        <span class="card_icon" aria-hidden="true">→</span>
+                        <span class="card_title">Week 2</span>
+                    </a>
+
+                    <div class="group">
+                        <div class="card card-group" aria-hidden="true">
+                            <span class="card_icon">→</span>
+                            <span class="card_title">Week 3</span>
+                        </div>
+                        <a class="card card-sub" href="week3/index.html">
+                            <span class="card_icon">→</span>
+                            <span class="card_title">Reading Response</span>
+                        </a>
+                        <a class="card card-sub" href="week3/rand.html">
+                            <span class="card_icon">→</span>
+                            <span class="card_title">Paul Rand Design</span>
+                        </a>
+                    </div>
+                </nav>
+            </div>
+
+            <footer class="site-footer">hs5550-ph · Oct 2025</footer>
+        </main>
     </body>
 </html>

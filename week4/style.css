@@ -8,6 +8,7 @@
 :root{
   --max-width: 780px;
   --accent: #2b8cff;
+  scroll-behavior: smooth;
 }
 
 body{
@@ -68,6 +69,12 @@ button{
   cursor: pointer;
 }
 
+.video {
+  position: relative;
+  right: 10px;
+  left: 10px;
+}
+
 .fake-link{
   color: var(--accent);
   text-decoration: underline;
@@ -102,5 +109,8 @@ button{
   cursor: auto;
 }
 
-@keyframes slideUp{from{opacity:1;transform:translateY(20px)}to{opacity:1;transform:none}}
+@keyframes slideUp{
+  from {opacity:1;transform:translateY(20px)}
+  to{opacity:1;transform:none}
+}
 

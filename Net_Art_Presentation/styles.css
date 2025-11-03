@@ -1,0 +1,26 @@
+body {
+    animation: rotate 20s linear infinite;
+}
+
+.frame-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.frame-container iframe {
+    height: 100%;
+    width: 100%;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

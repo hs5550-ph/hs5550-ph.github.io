@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sample Article — Wikipedia Clone</title>
+  <link rel="stylesheet" href="wiki.css" />
+</head>
+<body>
+  <!-- Top bar -->
+  <div class="topbar">
+    <div class="topbar_inner">
+      <div class="wordmark">
+        <img src="../assets/wiki.png" alt="wiki" width="50px"/>
+        <div class="w_text">
+          <div>Wikipedia</div>
+          <small>The free encyclopedia</small>
+        </div>
+      </div>
+
+      <form class="search" role="search">
+        <input type="search" placeholder="Search Wikipedia" aria-label="Search" />
+        <button type="submit">Search</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Page frame -->
+  <div class="frame">
+    <!-- Sidebar -->
+    <aside class="sidebar" aria-label="Site navigation">
+        <div class="side_section">
+          <div class="side_header">Contents</div>
+          <div class="side_header">(Top)</div>
+          <a class="side_link" href="bio1.html">Biography</a>
+          <a class="side_link" href="context2.html">Context</a>
+          <a class="side_link" href="revolving3.html">The Revolving Internet</a>
+          <a class="side_link" href="reflections4.html">Reflections</a>
+        </div>
+        <div class="side_section">
+          <div class="side_header">Languages</div>
+          <a class="side_link" href="#">Español</a>
+          <a class="side_link" href="#">Français</a>
+          <a class="side_link" href="#">Deutsch</a>
+          <a class="side_link" href="#">中文</a>
+          <a class="side_link" href="#">日本語</a>
+        </div>
+      </aside>
+
+    <!-- Main content -->
+    <main class="content">
+      <!-- Page tabs mimic -->
+      <div class="tabs">
+        <div class="tabs_left">
+          <a class="tab active" href="#">Article</a>
+        </div>
+        <div class="tabs_right">
+          <a class="tab active" href="../index.html">Back</a>
+        </div>
+      </div>
+
+      <!-- Title -->
+      <h1 class="title">Personal reflections</h1>
+
+      <!-- Page meta line -->
+      <div class="subtitle">
+        From Wikipedia, the free encyclopedia
+      </div>
+
+
+
+      <!-- TOC -->
+      <nav class="toc" aria-label="Contents">
+        <div class="toc_header">Contents</div>
+        <ol>
+          <li><a href="#section_1">Irene</a></li>
+          <li><a href="#section_2">Phoebus</a></li>
+          <li><a href="#section_3">Charles</a></li>
+        </ol>
+      </nav>
+
+      <!-- Sections -->
+      <h2 id="section_1">Irene</h2>
+      <p>
+        <ul>
+            <li>Cognitive and Perceptual Perspective:</li>
+            <ul>
+                <li>The rotation creates cognitive disorientation, breaking predictive processing patterns</li>
+                <li>It interrupts our habitual eye movements and attention, thus highlighting how much our sense of ‘orientation’ depends on digital stability</li>
+                <li>Connects to ideas in cognitive design and embodied perception: how interfaces can shape behaviour and attention</li>
+            </ul>
+            <li>Why it matters today</li>
+            <ul>
+                <li>Makes us aware that interfaces aren’t neutral — they guide attention</li>
+                <li>Shows that even small design changes affect perception and comfort</li>
+                <li>Encourages reflection on our dependency on big platforms</li>
+                <li>Blurs the line between art, code, and psychology</li>
+            </ul>
+        </ul>
+      </p>
+
+      <h2 id="section_2">Phoebus</h2>
+      <p>
+        <ul>
+            <li>I am surprised that there are multiple interpretations of this seemingly simple design choice to spin the website. What does the artist want to tell us? Is there a deeper meaning at all - the artist mentions in an interview that the initial decision was only a choice of design. Is it?  </li>
+            <li>Perhaps this open-endedness of interpretations resembles the fact that in such a pluralistic society like the internet, there is no fixed understanding of a particular website. Each beholder interprets the meaning of a site differently.</li>
+        </ul>
+
+      </p>
+
+      <h2 id="section_3">Charles</h2>
+      <p>
+        <ul>
+            <li>At first I thought the revolving internet was just a fun twist, later I found out that it inspired the google "do a barrel roll".</li>
+            <li>It is interesting that a simple change to the design can make something that we're so familiar with into something that is extremely hard to use.
+                It made me think about how much power that tech companies have through their design choices, and how those choices affect who can or can’t comfortably navigate the internet, especially for people with disabilities.
+            </li>
+        </ul>
+      </p>
+
+
+
+      <!-- Footer -->
+      <footer class="footer">
+        <div class="footer_links">
+          <a href="#">Privacy policy</a>
+          <span>•</span>
+          <a href="#">About</a>
+          <span>•</span>
+          <a href="#">Contact</a>
+        </div>
+      </footer>
+    </main>
+  </div>
+</body>
+</html>

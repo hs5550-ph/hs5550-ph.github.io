@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sample Article — Wikipedia Clone</title>
+  <link rel="stylesheet" href="wiki.css" />
+</head>
+<body>
+  <!-- Top bar -->
+  <div class="topbar">
+    <div class="topbar_inner">
+      <div class="wordmark">
+        <img src="../assets/wiki.png" alt="wiki" width="50px"/>
+        <div class="w_text">
+          <div>Wikipedia</div>
+          <small>The free encyclopedia</small>
+        </div>
+      </div>
+
+      <form class="search" role="search">
+        <input type="search" placeholder="Search Wikipedia" aria-label="Search" />
+        <button type="submit">Search</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Page frame -->
+  <div class="frame">
+    <!-- Sidebar -->
+    <aside class="sidebar" aria-label="Site navigation">
+      <div class="side_section">
+        <div class="side_header">Contents</div>
+        <div class="side_header">(Top)</div>
+        <a class="side_link" href="bio1.html">Biography</a>
+        <a class="side_link" href="context2.html">Context</a>
+        <a class="side_link" href="revolving3.html">The Revolving Internet</a>
+        <a class="side_link" href="reflections4.html">Reflections</a>
+      </div>
+      <div class="side_section">
+        <div class="side_header">Languages</div>
+        <a class="side_link" href="#">Español</a>
+        <a class="side_link" href="#">Français</a>
+        <a class="side_link" href="#">Deutsch</a>
+        <a class="side_link" href="#">中文</a>
+        <a class="side_link" href="#">日本語</a>
+      </div>
+    </aside>
+
+    <!-- Main content -->
+    <main class="content">
+      <!-- Page tabs mimic -->
+      <div class="tabs">
+        <div class="tabs_left">
+          <a class="tab active" href="#">Article</a>
+        </div>
+        <div class="tabs_right">
+          <a class="tab active" href="../index.html">Back</a>
+        </div>
+      </div>
+
+      <!-- Title -->
+      <h1 class="title">Context: Net Art and digital culture</h1>
+
+      <!-- Page meta line -->
+      <div class="subtitle">
+        From Wikipedia, the free encyclopedia
+      </div>
+
+      <!-- Infobox + lead in a two column layout -->
+      <div class="lead_wrap">
+        <p class="lead">
+            Dullaart’s work is situated within the broader movement of Net Art, a form of art created for and experienced 
+            on the internet. Emerging in the 1990s, Net Art often employed web browsers, HTML, and code as artistic tools.
+             Artists in this field examined the social, political, and aesthetic dimensions of online environments.
+            <br> <br>Belonging to a generation that grew up alongside the internet, Dullaart’s perspective is characterized by 
+            an insider critique—his works both inhabit and distort the digital world to make its invisible structures perceptible.
+           
+        </p>
+
+        <figure class="infobox" role="complementary" aria-label="Infobox">
+          <figcaption class="infobox_title">Jodi</figcaption>
+          <img src="../assets/context1.png" alt="context picture" />
+          <table class="infotable">
+            <tr><th>Artists</th><td>Joan Heemskerk <br> Dirk Paesmans</td></tr>
+          </table>
+        </figure>
+      </div>
+
+      
+
+
+      <!-- Footer -->
+      <footer class="footer">
+        <div class="footer_links">
+          <a href="#">Privacy policy</a>
+          <span>•</span>
+          <a href="#">About</a>
+          <span>•</span>
+          <a href="#">Contact</a>
+        </div>
+      </footer>
+    </main>
+  </div>
+</body>
+</html>

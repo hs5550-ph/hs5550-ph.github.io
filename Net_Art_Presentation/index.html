@@ -1,22 +1,114 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
-    <title>Document</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Google Search </title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="google-style.css" />
+
+  <script src="scripts.js" defer></script>
 </head>
 <body>
-    <div class = "frame-container">
-        <iframe src="https://therevolvinginternet.com/"></iframe>
-        <iframe src="https://therevolvinginternet.com/"></iframe>
-        <iframe src="https://therevolvinginternet.com/"></iframe>
-        <iframe src="slides/iframe.html"></iframe>
-        <iframe src="slides/iframe.html"></iframe>
-        <iframe src="slides/iframe.html"></iframe>
-         <iframe src="https://therevolvinginternet.com/"></iframe>
-        <iframe src="https://therevolvinginternet.com/"></iframe>
-        <iframe src="https://therevolvinginternet.com/"></iframe>
+  <header class="topbar">
+    <div class="left">
+      <div class="google-logo">
+        <img src="https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_74x24dp.png" alt="Google">
+      </div>
+      <div class="search-bar">
+        <input type="text" value="Constant Dullaart" />
+      </div>
     </div>
+    <div class="right">
+      <div class="user-logo">C</div>
+    </div>
+  </header>
+
+  <nav class="nav-bar">
+    <div class="tabs">
+      <a class="active">All</a>
+      <a>Images</a>
+      <a>Videos</a>
+      <a>News</a>
+      <a>Maps</a>
+      <a>More ▾</a>
+      <a>Tools ▾</a>
+    </div>
+  </nav>
+
+  <main class="main">
+    <section class="results">
+      <p class="about">About 2,340,000 results (0.42 seconds)</p>
+
+      <div class="search-result-container">
+        
+        <!-- CONSTANT DULLAART: Artists background-->
+        <article class="search-result">
+          <a href="#" class="url">wikipedia.org/wiki/Constant_Dullaart</a>
+          <h2><a href="slides/bio1.html">Constant Dullaart</a></h2>
+          <p>
+            Dutch conceptual artist, media artist, internet artist, and curator
+            Studied at the Gerrit Rietveld Academy and the Rijksakademie in Amsterdam
+            Works mainly with the internet as his material.
+          </p>
+        </article>
+
+         <!-- Context — Net Art & Digital Culture -->
+        <article class="search-result">
+          <a href="#" class="url">constantdullaart.com</a>
+          <h2><a href="slides/context2.html">Net Art & Digital Culture</a></h2>
+          <p>
+            Net art = art made for and experienced on the internet.
+            Emerged in the 1990s with artists experimenting directly with browsers and code.
+          </p>
+        </article>
+
+        <!-- The Revolving Internet -->
+        <article class="search-result">
+          <a href="#" class="url">https://therevolvinginternet.com/</a>
+          <h2><a href="slides/revolving3.html">The Revolving Internet</a></h2>
+          <p>
+            Created in 2010 (therevolvinginternet.com)
+            A browser-based artwork where the entire Google homepage slowly rotates 360°.
+            The page remains functional – you can still type, click, search.
+          </p>
+        </article>
+
+        <!-- Reflections on the Art Work -->
+        <article class="search-result">
+          <a href="#" class="url">wikipedia.org/wiki/Personal_Reflections</a>
+          <h2><a href="slides/reflections4.html">Personal reflections</a></h2>
+          <p>
+            The rotation creates cognitive disorientation, breaking predictive processing patterns. 
+            It interrupts our habitual eye movements and attention, thus highlighting how much our sense of ‘orientation’ depends on digital stability.
+          </p>
+        </article>
+
+      </div>
+      <div class="footer">
+        <img src="assets/google-footer.png" alt="Google Logo" id="google-footer-img"/>
+      </div>
+    </section>
+
+    <aside class="panel">
+      <div class="panel-card">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/63/Constant_Dullaart.jpg" alt="">
+        <h1>Constant Dullaart</h1>
+        <h1>(The Revolving Artist)</h1>
+        <p class="subtitle">Dutch conceptual artist</p>
+
+        <div class="info">
+           <img src="https://www.stilvorlagen.de/wp-content/uploads/2015/04/svl9_profilbild_dullaart_sw.jpg" alt="">
+          <div><strong>Born:</strong> Mar 7 1979 (age 46), Netherlands</div>
+          <div><strong>Education:</strong></div>
+          <div>Gerrit Rietveld Academy</div>
+          <div>Rijksakademie van beeldende kunsten</div>
+          <div><strong>Period:</strong> Post-Internet</div>
+        </div>
+      </div>
+    </aside>
+  </main>
 </body>
 </html>

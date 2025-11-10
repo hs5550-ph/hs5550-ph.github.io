@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sample Article — Wikipedia Clone</title>
+  <link rel="stylesheet" href="wiki.css" />
+
+  <style>
+    * {
+      transform: rotate(360deg);
+      animation: spin 200s linear infinite;
+    }
+
+    @keyframes spin {
+      from {
+        transform: rotate(0deg);
+      }
+      to {
+        transform: rotate(360deg);
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Top bar -->
+  <div class="topbar">
+    <div class="topbar_inner">
+      <div class="wordmark">
+        <img src="../assets/wiki.png" alt="wiki" width="50px"/>
+        <div class="w_text">
+          <div>Wikipedia</div>
+          <small>The free encyclopedia</small>
+        </div>
+      </div>
+
+      <form class="search" role="search">
+        <input type="search" placeholder="Search Wikipedia" aria-label="Search" />
+        <button type="submit">Search</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Page frame -->
+  <div class="frame">
+    <!-- Sidebar -->
+    <aside class="sidebar" aria-label="Site navigation">
+        <div class="side_section">
+          <div class="side_header">Contents</div>
+          <div class="side_header">(Top)</div>
+          <a class="side_link" href="bio1.html">Biography</a>
+          <a class="side_link" href="context2.html">Context</a>
+          <a class="side_link" href="revolving3.html">The Revolving Internet</a>
+          <a class="side_link" href="reflections4.html">Reflections</a>
+        </div>
+        <div class="side_section">
+          <div class="side_header">Languages</div>
+          <a class="side_link" href="#">Español</a>
+          <a class="side_link" href="#">Français</a>
+          <a class="side_link" href="#">Deutsch</a>
+          <a class="side_link" href="#">中文</a>
+          <a class="side_link" href="#">日本語</a>
+        </div>
+      </aside>
+
+    <!-- Main content -->
+    <main class="content">
+      <!-- Page tabs mimic -->
+      <div class="tabs">
+        <div class="tabs_left">
+          <a class="tab active" href="#">Article</a>
+        </div>
+        <div class="tabs_right">
+          <a class="tab active" href="../index.html">Back</a>
+        </div>
+      </div>
+
+      <!-- Title -->
+      <h1 class="title">The Revolving Internet (2010)</h1>
+
+      <!-- Page meta line -->
+      <div class="subtitle">
+        From Wikipedia, the free encyclopedia
+      </div>
+
+      <!-- Infobox + lead in a two column layout -->
+      <div class="lead_wrap">
+        <p class="lead">
+          <b>The Revolving Internet</b> is a browser-based artwork created by Constant Dullaart in 2010. 
+          The piece presents the Google homepage rotating continuously through 360 degrees while remaining fully functional.
+           Users can still type, search, and click while the entire interface spins.
+
+        </p>
+
+        <figure class="infobox" role="complementary" aria-label="Infobox">
+          <figcaption class="infobox_title">The Revolving Internet</figcaption>
+          <img src="../assets/revolve.png" alt="revolving picture" />
+          <table class="infotable">
+            <tr><th>Artist</th><td>	Constant Dullaart</td></tr>
+            <tr><th>Nationality</th><td>Dutch</td></tr>
+            <tr><th>Year</th><td>2010</td></tr>
+          </table>
+        </figure>
+      </div>
+
+      <!-- TOC -->
+      <nav class="toc" aria-label="Contents">
+        <div class="toc_header">Contents</div>
+        <ol>
+          <li><a href="#section_1">Development and technical aspects</a></li>
+          <li><a href="#section_2">Concept and interpretation</a></li>
+          <li><a href="#section_3">Critical reception</a></li>
+        </ol>
+      </nav>
+
+      <!-- Sections -->
+      <h2 id="section_1">Development and technical aspects</h2>
+      <p>
+        The work was created using <b>HTML, CSS, and JavaScript</b>, employing an iframe to embed the live Google page and applying
+         a continuous rotation transform. It quickly became a viral sensation, attracting approximately 1.5 million visits per year.
+        <br> <br> Due to subsequent changes in Google’s embedding policy, the original version is no longer functional. 
+        The artwork now survives through online archives such as <b>Rhizome’s Net Art Anthology</b>, illustrating
+         the ephemerality of digital art and its dependence on corporate infrastructures.
+      </p>
+
+      <h2 id="section_2">Concept and interpretation</h2>
+      <p>
+        According to Rhizome, the project “makes the user aware that Google is not God.” 
+        The rotating interface subverts one of the most stable and trusted digital environments,
+         creating both physical and cognitive discomfort. By disrupting habitual orientation,
+          it exposes the extent to which interface design shapes perception and trust in digital systems.
+
+
+      </p>
+
+      <h2 id="section_3">Critical reception</h2>
+      <p>
+        The piece has been described as an example of “experiential critique,” 
+        revealing the psychological and behavioral influence of online interfaces. 
+        Designers and scholars have noted that even subtle alterations to digital environments 
+        can influence comfort, attention, and credibility.
+
+      </p>
+
+
+      <!-- Footer -->
+      <footer class="footer">
+        <div class="footer_links">
+          <a href="#">Privacy policy</a>
+          <span>•</span>
+          <a href="#">About</a>
+          <span>•</span>
+          <a href="#">Contact</a>
+        </div>
+      </footer>
+    </main>
+  </div>
+</body>
+</html>

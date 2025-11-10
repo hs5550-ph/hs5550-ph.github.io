@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sample Article — Wikipedia Clone</title>
+  <link rel="stylesheet" href="wiki.css" />
+</head>
+<body>
+  <!-- Top bar -->
+  <div class="topbar">
+    <div class="topbar_inner">
+      <div class="wordmark">
+        <img src="../assets/wiki.png" alt="wiki" width="50px"/>
+        <div class="w_text">
+          <div>Wikipedia</div>
+          <small>The free encyclopedia</small>
+        </div>
+      </div>
+
+      <form class="search" role="search">
+        <input type="search" placeholder="Search Wikipedia" aria-label="Search" />
+        <button type="submit">Search</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Page frame -->
+  <div class="frame">
+    <!-- Sidebar -->
+    <aside class="sidebar" aria-label="Site navigation">
+      <div class="side_section">
+        <div class="side_header">Contents</div>
+        <div class="side_header">(Top)</div>
+        <a class="side_link" href="bio1.html">Biography</a>
+        <a class="side_link" href="context2.html">Context</a>
+        <a class="side_link" href="revolving3.html">The Revolving Internet</a>
+        <a class="side_link" href="reflections4.html">Reflections</a>
+      </div>
+      <div class="side_section">
+        <div class="side_header">Languages</div>
+        <a class="side_link" href="#">Español</a>
+        <a class="side_link" href="#">Français</a>
+        <a class="side_link" href="#">Deutsch</a>
+        <a class="side_link" href="#">中文</a>
+        <a class="side_link" href="#">日本語</a>
+      </div>
+    </aside>
+
+    <!-- Main content -->
+    <main class="content">
+      <!-- Page tabs mimic -->
+      <div class="tabs">
+        <div class="tabs_left">
+          <a class="tab active" href="#">Article</a>
+        </div>
+        <div class="tabs_right">
+          <a class="tab active" href="../index.html">Back</a>
+        </div>
+      </div>
+
+      <!-- Title -->
+      <h1 class="title">Constant Dullaart</h1>
+
+      <!-- Page meta line -->
+      <div class="subtitle">
+        From Wikipedia, the free encyclopedia
+      </div>
+
+      <!-- Infobox + lead in a two column layout -->
+      <div class="lead_wrap">
+        <p class="lead">
+          <b>Constant Dullaart</b> (born 1979) is a Dutch conceptual artist, media artist,
+           internet artist, and curator. He is best known for exploring the political and 
+           aesthetic structures of the internet, often using digital platforms as both subject and medium.
+            His work critiques corporate control over online space, visibility, and behavior.
+        </p>
+
+        <figure class="infobox" role="complementary" aria-label="Infobox">
+          <figcaption class="infobox_title">Constant Dullart</figcaption>
+          <img src="../assets/bio1.jpg" alt="biography picture" />
+          <table class="infotable">
+            <tr><th>Born</th><td>	Constant Klaas Willem Dullaart <br> 7 March 1979 (age 46) <br> Leiderdorp, Netherlands</td></tr>
+            <tr><th>Nationality</th><td>Dutch</td></tr>
+            <tr><th>Education</th><td>Gerrit Rietveld Academie, Amsterdam; Rijksakademie, Amsterdam</td></tr>
+          </table>
+        </figure>
+      </div>
+
+      <!-- TOC -->
+      <nav class="toc" aria-label="Contents">
+        <div class="toc_header">Contents</div>
+        <ol>
+          <li><a href="#section_1">Early life and education</a></li>
+          <li><a href="#section_2">Artistic practice</a></li>
+          <li><a href="#section_3">Major themes</a></li>
+          <li><a href="#section_4">Notable projects</a></li>
+        </ol>
+      </nav>
+
+      <!-- Sections -->
+      <h2 id="section_1">Early life and education</h2>
+      <p>
+        Dullaart studied at the Gerrit Rietveld Academy and the Rijksakademie van Beeldende Kunsten in Amsterdam.
+         Initially trained in video art, he later transitioned toward internet-based works, engaging critically 
+         with the infrastructures of digital culture.
+      </p>
+
+      <h2 id="section_2">Artistic practice</h2>
+      <p>
+        Working primarily with the internet as his material, Dullaart’s projects investigate how online 
+        systems—such as algorithms, social media platforms, and interfaces—mediate perception and shape human interaction. 
+        His works often manipulate familiar web environments to challenge viewers’ trust in digital “normalcy.”
+        <br><br>
+        In 2015, Dullaart received the Prix Net Art for his contributions to internet-based art.
+
+      </p>
+
+      <h2 id="section_3">Major themes</h2>
+      <p>
+        Recurring themes in Dullaart’s practice include authenticity, algorithmic bias, digital labor, 
+        and the aesthetics of visibility. His works frequently expose the underlying mechanisms that govern online experience.
+      </p>
+
+      <h2 id="section_4">Notable projects</h2>
+      <ul>
+        <li><b>The Disagreeing Internet</b> – a parody of Google pages featuring “disagree” buttons, emphasizing the illusion of user agency in online spaces.</li>
+        <li><b>Jennifer in Paradise</b> – a reinterpretation of the first image ever manipulated in Photoshop, questioning the origins of digital image culture.</li>
+        <li><b>High Retention, Slow Delivery</b> – a performance piece in which the artist purchased fake social media followers to explore the commodification of attention.
+        </li>
+      </ul>
+
+
+      <!-- Footer -->
+      <footer class="footer">
+        <div class="footer_links">
+          <a href="#">Privacy policy</a>
+          <span>•</span>
+          <a href="#">About</a>
+          <span>•</span>
+          <a href="#">Contact</a>
+        </div>
+      </footer>
+    </main>
+  </div>
+</body>
+</html>

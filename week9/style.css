@@ -1,0 +1,108 @@
+body {
+  background-color: #1a1a1a;
+  color: #eee;
+  font-family: Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+.container {
+  text-align: center;
+  padding: 20px;
+  border: 2px solid #444;
+  border-radius: 12px;
+  background-color: #222;
+  box-shadow: 0 0 15px rgba(0,0,0,0.7);
+  width: max(20vw, 300px);
+}
+
+h1 {
+  margin-bottom: 16px;
+}
+
+button {
+  padding: 12px 24px;
+  font-size: 16px;
+  border: none;
+  border-radius: 8px;
+  background-color: #d13838;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #b12e2e;
+}
+
+.timer {
+  margin-top: 20px;
+  font-size: 48px;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+.caption {
+  margin-top: 16px;
+  font-size: 14px;
+  color: #aaa;
+}
+
+.progress-wrapper {
+  margin-top: 20px;
+  width: 100%;
+  background: #333;
+  border-radius: 8px;
+  overflow: hidden;
+  height: 12px;
+}
+
+.progress-bar {
+  height: 100%;
+  width: 0%;
+  background-color: #d13838;
+  transition: width 0.2s linear;
+}
+
+.quote-popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.8);
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
+
+.quote-content {
+  background: #333;
+  padding: 20px;
+  border-radius: 12px;
+  text-align: center;
+  max-width: 300px;
+  color: #fff;
+}
+
+.quote-content p {
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+.quote-content button {
+  padding: 8px 16px;
+  background: #06b6d4;
+  border: none;
+  border-radius: 6px;
+  color: #042028;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.quote-content button:hover {
+  background: #039fb8;
+}

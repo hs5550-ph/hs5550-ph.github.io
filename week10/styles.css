@@ -1,0 +1,107 @@
+:root{
+  --sky1:#cfe9ff;
+  --sky2:#e8f6ff;
+  --water1:#78cfff;
+  --water2:#4bb2ff;
+  --accent:#ff5f5f;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  background:linear-gradient(var(--sky1), var(--sky2));
+  font-family:Inter, sans-serif;
+  height:100vh;
+  overflow:hidden;
+}
+
+.scene{
+  width:100%;
+  height:100%;
+  position:relative;
+}
+
+.sky{
+  height:30%;
+  width:100%;
+  position:relative;
+}
+
+.sky h1{
+  text-align: center;
+  position: relative;
+  left:50%;
+  top:50%;
+  transform:translate(-50%,-50%);
+  font-size:3rem;
+  color:#333;
+}
+
+.rod{
+  position:absolute;
+  left:10%;
+  top:0;
+  height:100%;
+  object-fit:contain;
+}
+
+.water{
+  position:absolute;
+  bottom:0;
+  width:100%;
+  height:70%;
+  background:linear-gradient(var(--water1),var(--water2));
+  overflow:hidden;
+}
+
+
+.bobber{
+  position:absolute;
+  left:22%;
+  top:5%;
+  transform:translate(-50%,0);
+  cursor:pointer;
+  background:transparent;
+  padding:0;
+}
+
+.hook{
+  width:28px;
+  height:56px;
+  display:block;
+  overflow:visible;
+  transform-origin:12px 0px;
+  animation:hook-bob 3.6s infinite ease-in-out;
+}
+
+.fish-layer{
+  position:absolute;
+  width:100%;
+  height:100%;
+  pointer-events:none;
+}
+
+.text-bubble{
+  position:absolute;
+  padding:10px 16px;
+  background:white;
+  border-radius:16px;
+  border:1px solid #ffffffaa;
+  box-shadow:0 6px 18px rgba(0,0,0,0.15);
+  font-size:0.9rem;
+  opacity:0;
+  transition:opacity 0.6s;
+}
+.hidden{display:none;}
+
+.instructions{
+  position:fixed;
+  left:20px;
+  bottom:20px;
+  background:rgba(255,255,255,0.9);
+  padding:8px 12px;
+  border-radius:10px;
+  box-shadow:0 6px 18px rgba(0,0,0,0.08);
+  font-size:0.9rem;
+  color:#111;
+  z-index:30;
+}

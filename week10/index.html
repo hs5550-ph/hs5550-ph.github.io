@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Week10</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script src="script.js" defer></script>
+</head>
+
+<body>
+  <div class="scene">
+
+    <div class="sky">
+        <h1>YangSheng</h1>
+        <h1>At the age of Internet</h1>
+      <img src="assets/fishing_rod.png" alt="Fishing Rod" class="rod">
+    </div>
+
+    <div class="water">
+
+      <div id="bobber" class="bobber">
+        <svg class="hook" viewBox="0 0 24 48" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M12 2 L12 28 C12 36 20 38 20 30" stroke="#222" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="12" cy="34" r="2" fill="#222" />
+        </svg>
+      </div>
+
+      <div id="fishLayer" class="fish-layer"></div>
+
+      <div id="textBubble" class="text-bubble hidden"></div>
+    </div>
+  </div>
+
+  <div id="instructions" class="instructions">Press SPACE to lower the hook</div>
+</body>
+</html>

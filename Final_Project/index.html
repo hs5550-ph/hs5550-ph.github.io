@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D World Picture Map</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://unpkg.com/globe.gl"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <div id="globe-container"></div>
+    <div id="city-panel" class="hidden">
+        <h3 id="city-name"></h3>
+        <div id="city-images" class="image-grid"></div>
+
+        <!-- holds the id of the selected image (not shown) -->
+        <input type="hidden" id="selected-image-id" value="">
+
+        <input type="file" id="image-upload" accept="image/*">
+        <button id="upload-image-button">Upload Image</button>
+        <button id="delete-image-button">Delete Image</button>
+    </div>
+
+</body>
+</html>

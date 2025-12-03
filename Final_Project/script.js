@@ -57,7 +57,7 @@ request.onupgradeneeded = (event) => {
     db = event.target.result;
     if (!db.objectStoreNames.contains("images")) {
         // Create object store with city name as key
-        const store = db.createObjectStore("images", { keyPath: "storage_path"});
+        const store = db.createObjectStore("images", { keyPath: "id", autoIncrement: true });
         // Index for city lookup
         store.createIndex("city", "city", { unique: false });
     }

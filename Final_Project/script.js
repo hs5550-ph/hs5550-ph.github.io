@@ -57,7 +57,7 @@ request.onupgradeneeded = (event) => {
     db = event.target.result;
     if (!db.objectStoreNames.contains("images")) {
         // Create object store with city name as key
-        const store = db.createObjectStore("images", { keyPath: "id", autoIncrement: true });
+        const store = db.createObjectStore("images", { keyPath: "storage_path" });
         // Index for city lookup
         store.createIndex("city", "city", { unique: false });
     }
@@ -137,9 +137,11 @@ function uploadCityImage(img, cityName) {
   if (!cityName) return alert('No city selected for upload');
   if (!db) return console.error('IndexedDB not ready yet');
 
+  const storagePath = `${cityName}-${Date.now()}.jpg`; // generate unique key
+
   const transaction = db.transaction(["images"], "readwrite");
   const store = transaction.objectStore("images");
-  const addRequest = store.put({ file: img, city: cityName });
+  const addRequest = store.put({ file: img, city: cityName, storage_path: storagePath, upload_time: new Date().toISOString() });
 
   addRequest.onsuccess = () => {
     console.log('Image uploaded to local storage successfully');

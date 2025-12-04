@@ -11,17 +11,30 @@
 </head>
 <body>
     <div id="globe-container"></div>
-    <div id="city-panel" class="hidden">
-        <h3 id="city-name"></h3>
-        <div id="city-images" class="image-grid"></div>
+    <div id="city-panel" class="hidden" aria-hidden="true">
+        <div class="panel-header">
+            <div class="panel-title">
+                <h3 id="city-name">City</h3>
+            </div>
+            <button id="close-city-panel" class="icon-btn" aria-label="Close">✕</button>
+        </div>
 
-        <!-- holds the id of the selected image (not shown) -->
+        <div id="city-images" class="image-grid" aria-live="polite"></div>
+
+        <!-- holds the id of the selected image -->
         <input type="hidden" id="selected-image-id" value="">
 
-        <input type="file" id="image-upload" accept="image/*">
-        <button id="upload-image-button">Upload Image</button>
-        <button id="delete-image-button">Delete Image</button>
-        <button id="download-image-button">Download Image</button>
+        <div class="panel-actions">
+            <div class="file-row">
+                <input type="file" id="image-upload" accept="image/*" class="file-input">
+            </div>
+
+            <div class="action-row">
+                <button id="upload-image-button" class="btn primary">Upload</button>
+                <button id="delete-image-button" class="btn danger">Delete</button>
+                <button id="download-image-button" class="btn">Download</button>
+            </div>
+        </div>
     </div>
 
 </body>

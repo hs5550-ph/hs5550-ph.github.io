@@ -46,6 +46,22 @@ function onClickCity(city) {
   loadCityImages(city);
 }
 
+// Wire up the close button
+const closeCityPanelButton = document.getElementById("close-city-panel");
+if (closeCityPanelButton) {
+  closeCityPanelButton.addEventListener("click", (e) => {
+    e.preventDefault();
+    const panel = document.getElementById("city-panel");
+    if (panel) {
+      panel.classList.add("hidden");
+      panel.setAttribute('aria-hidden', 'true');
+    }
+  });
+} else {
+  console.warn('Close city panel button not found: expected id "close-city-panel"');
+}
+
+
 //Part 2 Opening the IndexedDB database 
 const DB_NAME = "CityImages";
 const DB_VERSION = 1; // Increment if you change schema
@@ -463,7 +479,3 @@ function stopPeriodicSync() {
 window.addEventListener("beforeunload", () => {
   stopPeriodicSync();
 });
-
-
-
-

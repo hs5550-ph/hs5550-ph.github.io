@@ -101,15 +101,14 @@ function loadCityImages(city) {
           img.src = url;
           img.alt = current.value.file.name || city.name;
           // attach the DB primary key so we can delete by id later
-          const id = ('primaryKey' in current) ? current.primaryKey : current.key;
-          img.dataset.id = id;
+          img.dataset.storagePath = current.value.storage_path;
           img.addEventListener('click', () => {
             // toggle selection
             const already = img.classList.contains('selected');
             document.querySelectorAll('#city-images img.selected').forEach(el => el.classList.remove('selected'));
             if (!already) {
               img.classList.add('selected');
-              document.getElementById('selected-image-id').value = id;
+              document.getElementById('selected-image-id').value = img.dataset.storagePath;
             } else {
               document.getElementById('selected-image-id').value = '';
             }
@@ -120,6 +119,52 @@ function loadCityImages(city) {
     };
 
     request.onerror = (err) => console.error("Failed to load images:", err);
+}
+
+const downloadImageButton = document.getElementById("download-image-button");
+
+downloadImageButton.addEventListener("click", () => {
+  const selectedStoragePath = document.getElementById('selected-image-id').value;
+
+  if (!selectedStoragePath) {
+    return alert("Please select an image to download");
+  }
+
+  downloadCityImage(selectedStoragePath);
+});
+
+
+function downloadCityImage(storagePath) {
+  if (!db) return console.error("IndexedDB not ready");
+
+  const transaction = db.transaction(["images"], "readonly");
+  const store = transaction.objectStore("images");
+  const getRequest = store.get(storagePath);
+
+  getRequest.onsuccess = () => {
+    const record = getRequest.result;
+    if (!record || !record.file) {
+      return alert("Image not found in local storage");
+    }
+
+    const file = record.file;
+    const url = URL.createObjectURL(file);
+
+    // Create temporary download link
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = file.name || "city-image.jpg";
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+
+    // Clean up memory
+    URL.revokeObjectURL(url);
+  };
+
+  getRequest.onerror = (err) => {
+    console.error("Failed to download image:", err);
+  };
 }
 
 const uploadButton = document.getElementById("upload-image-button");
@@ -137,7 +182,7 @@ function uploadCityImage(img, cityName) {
   if (!cityName) return alert('No city selected for upload');
   if (!db) return console.error('IndexedDB not ready yet');
 
-  const storagePath = `${cityName}-${Date.now()}.jpg`; // generate unique key
+  const storagePath = `city_images/${cityName}-${Date.now()}.jpg`;
 
   const transaction = db.transaction(["images"], "readwrite");
   const store = transaction.objectStore("images");
@@ -147,7 +192,7 @@ function uploadCityImage(img, cityName) {
     console.log('Image uploaded to local storage successfully');
     
     // Also upload to remote backend (Supabase)
-    uploadToSupabase(img, cityName).catch(err => console.error('Failed to upload to Supabase:', err));
+    uploadToSupabase(img, cityName, storagePath);
     
     alert('Image uploaded successfully');
     imageInput.value = '';
@@ -159,28 +204,34 @@ function uploadCityImage(img, cityName) {
 
 const deleteImageButton = document.getElementById("delete-image-button");
 deleteImageButton.addEventListener("click", () => {
-  const selectedId = document.getElementById('selected-image-id').value;
-  if (!selectedId) return alert('Please select an image to delete');
-  deleteCityImage(Number(selectedId));
+  const selectedStoragePath = document.getElementById('selected-image-id').value;
+
+  if (!selectedStoragePath) {
+    return alert('Please select an image to delete');
+  }
+
+  deleteCityImage(selectedStoragePath); 
 });
 
-function deleteCityImage(imageID) {
-  //TODO: implement deletion to Supabase 
+function deleteCityImage(storagePath) {
   if (!db) return console.error('IndexedDB not ready');
 
   const transaction = db.transaction(["images"], "readwrite");
   const store = transaction.objectStore("images");
-  const deleteRequest = store.delete(imageID);
+  const deleteRequest = store.delete(storagePath);
 
   deleteRequest.onsuccess = () => {
     console.log('Image deleted successfully');
     alert('Image deleted successfully');
     
-    const imgEl = document.querySelector(`#city-images img[data-id='${imageID}']`);
+    const imgEl = document.querySelector(`#city-images img[data-storage-path='${storagePath}']`);
     if (imgEl) {
       try { if (imgEl.src && imgEl.src.startsWith('blob:')) URL.revokeObjectURL(imgEl.src); } catch(err){}
       imgEl.remove();
     }
+
+    deleteSupabaseRecord(storagePath);
+
     document.getElementById('selected-image-id').value = '';
     const cityName = document.getElementById('city-name').textContent;
     loadCityImages({ name: cityName }); // Reload images for the city
@@ -263,18 +314,43 @@ async function upsertLocalRecord(record) {
   }
 }
 
-// Upload a local image to Supabase storage and database
-async function uploadToSupabase(file, cityName) {
+async function deleteSupabaseRecord(storagePath) {
   if (!supabaseClient) {
-    console.warn("Supabase not initialized yet, skipping upload");
+    console.warn("Supabase not initialized");
+    return;
+  }
+
+  const { data, error } = await supabaseClient
+    .from('city_images')
+    .delete()
+    .eq('storage_path', storagePath);
+
+  if (error) {
+    console.error("Failed to delete Supabase record:", error);
+  } else {
+    console.log("Deleted Supabase record for", storagePath, data);
+  }
+
+  const { error: storageError } = await supabaseClient
+    .storage
+    .from('city-images')
+    .remove([storagePath]);
+
+  if (storageError) {
+    console.error("Failed to delete file from storage:", storageError);
+    return;
+  }
+}
+
+// Upload a local image to Supabase storage and database
+async function uploadToSupabase(file, cityName, storagePath) {
+  if (!supabaseClient) {
+    console.warn("Supabase it not initialized");
     return;
   }
 
   try {
-    // Generate a unique filename
     const timestamp = new Date().toISOString();
-    const fileName = `${cityName}-${Date.now()}.jpg`;
-    const storagePath = `city_images/${fileName}`;
 
     // Upload file to Supabase storage
     const { data: uploadData, error: uploadError } = await supabaseClient.storage
@@ -383,7 +459,7 @@ function stopPeriodicSync() {
   }
 }
 
-// Stop sync when user leaves (to save bandwidth)
+// Stop sync when user leaves
 window.addEventListener("beforeunload", () => {
   stopPeriodicSync();
 });

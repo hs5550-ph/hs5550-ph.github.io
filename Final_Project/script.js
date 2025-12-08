@@ -406,6 +406,11 @@ async function uploadToSupabase(file, cityName, storagePath) {
     }
     console.log('Image record inserted to database for', cityName, dbData);
 
+    // Increment city score in rankings
+    await supabaseClient.rpc('increment_city_score', {
+      city_name: cityName
+    });
+
     // Update last sync time so we don't re-download our own upload
     setLastSyncTime(timestamp);
 

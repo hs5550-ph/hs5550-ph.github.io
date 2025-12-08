@@ -10,6 +10,23 @@
     <script src="script.js" defer></script>
 </head>
 <body>
+    <!--INTRO POPUP -->
+    <div id="intro-overlay" class="intro-overlay hidden">
+        <div class="intro-modal">
+        <h2>🌍 Welcome to the World Photo Map</h2>
+        <p>
+            1. Click any city on the globe indicated by the dots<br>
+            2. Upload images for that city - No one will stop you to upload whatever you want<br>
+            3. Let's see which city we want it to be the most popular!<br>
+            Note: There is no restriction or moderation<br>
+            The backend database is free and 100% public<br>
+        </p>
+        <button id="intro-close-btn" class="intro-btn">Got it!</button>
+        </div>
+    </div>
+    <script src="script-intro.js" defer></script>
+
+    <!--GLOBE AND CITY PANEL-->
     <div id="globe-container"></div>
     <div id="city-panel" class="hidden" aria-hidden="true">
         <div class="panel-header">
@@ -37,5 +54,12 @@
         </div>
     </div>
 
+    <!--Adding the ranking functionality-->
+    <div id="global-city-ranking" class="city-ranking">
+        <h3>🌍 Top Cities for Upload!</h3>
+        <h4>Make your city the most popular!</h4>
+        <ol id="ranking-list"></ol>
+    </div>
+    <script src="script-ranking.js" defer></script>
 </body>
 </html>

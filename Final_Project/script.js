@@ -216,6 +216,7 @@ function uploadCityImage(img, cityName) {
   };
 
   addRequest.onerror = (err) => console.error('Failed to upload image:', err);
+  loadCityRankings();
 }
 
 const deleteImageButton = document.getElementById("delete-image-button");
@@ -231,29 +232,53 @@ deleteImageButton.addEventListener("click", () => {
 
 function deleteCityImage(storagePath) {
   if (!db) return console.error('IndexedDB not ready');
-
+  // First fetch the local record so we can know the city before deleting it locally.
   const transaction = db.transaction(["images"], "readwrite");
   const store = transaction.objectStore("images");
-  const deleteRequest = store.delete(storagePath);
 
-  deleteRequest.onsuccess = () => {
-    console.log('Image deleted successfully');
-    alert('Image deleted successfully');
-    
-    const imgEl = document.querySelector(`#city-images img[data-storage-path='${storagePath}']`);
-    if (imgEl) {
-      try { if (imgEl.src && imgEl.src.startsWith('blob:')) URL.revokeObjectURL(imgEl.src); } catch(err){}
-      imgEl.remove();
-    }
+  const getReq = store.get(storagePath);
+  getReq.onsuccess = () => {
+    const record = getReq.result;
+    const cityNameForRpc = record?.city;
 
-    deleteSupabaseRecord(storagePath);
+    // Now delete the local record
+    const deleteRequest = store.delete(storagePath);
 
-    document.getElementById('selected-image-id').value = '';
-    const cityName = document.getElementById('city-name').textContent;
-    loadCityImages({ name: cityName }); // Reload images for the city
+    deleteRequest.onsuccess = async () => {
+      console.log('Image deleted successfully');
+      alert('Image deleted successfully');
+
+      const imgEl = document.querySelector(`#city-images img[data-storage-path='${storagePath}']`);
+      if (imgEl) {
+        try { if (imgEl.src && imgEl.src.startsWith('blob:')) URL.revokeObjectURL(imgEl.src); } catch(err){}
+        imgEl.remove();
+      }
+
+      // Pass the previously read city name so deleteSupabaseRecord can decrement score.
+      deleteSupabaseRecord(storagePath, cityNameForRpc).catch(err => console.error('Error deleting remote record:', err));
+
+      document.getElementById('selected-image-id').value = '';
+      const cityName = document.getElementById('city-name').textContent;
+      loadCityImages({ name: cityName }); // Reload images for the city
+    };
+
+    deleteRequest.onerror = (err) => console.error('Failed to delete image:', err);
   };
 
-  deleteRequest.onerror = (err) => console.error('Failed to delete image:', err);
+  getReq.onerror = (err) => {
+    console.error('Failed to read local record before delete:', err);
+    // Fallback: attempt delete anyway
+    const deleteRequest = store.delete(storagePath);
+    deleteRequest.onsuccess = () => {
+      console.log('Image deleted (fallback)');
+      document.getElementById('selected-image-id').value = '';
+      const cityName = document.getElementById('city-name').textContent;
+      loadCityImages({ name: cityName });
+      // Call remote delete without city knowledge
+      deleteSupabaseRecord(storagePath).catch(err => console.error('Error deleting remote record (fallback):', err));
+    };
+    deleteRequest.onerror = (err2) => console.error('Failed to delete image (fallback):', err2);
+  };
 }
 
 //Part 4 Adding Backend — Sync with Supabase
@@ -330,7 +355,7 @@ async function upsertLocalRecord(record) {
   }
 }
 
-async function deleteSupabaseRecord(storagePath) {
+async function deleteSupabaseRecord(storagePath, cityName) {
   if (!supabaseClient) {
     console.warn("Supabase not initialized");
     return;
@@ -345,6 +370,37 @@ async function deleteSupabaseRecord(storagePath) {
     console.error("Failed to delete Supabase record:", error);
   } else {
     console.log("Deleted Supabase record for", storagePath, data);
+
+    try {
+      if (cityName) {
+        const { error: rpcError } = await supabaseClient.rpc('decrement_city_score', {
+          city_name: cityName
+        });
+        if (rpcError) console.error('RPC decrement_city_score failed:', rpcError);
+      } else {
+        try {
+          const localTx = db.transaction(["images"], "readonly");
+          const localStore = localTx.objectStore("images");
+          const getReq = localStore.get(storagePath);
+          getReq.onsuccess = async () => {
+            const record = getReq.result;
+            if (record?.city) {
+              const { error: rpcError2 } = await supabaseClient.rpc('decrement_city_score', {
+                city_name: record.city
+              });
+              if (rpcError2) console.error('RPC decrement_city_score failed (fallback):', rpcError2);
+            }
+          };
+          getReq.onerror = (err) => console.error('Failed to read local record for RPC fallback:', err);
+        } catch (e) {
+          console.warn('No local record available for RPC fallback');
+        }
+      }
+    } catch (e) {
+      console.error('Error while calling decrement RPC:', e);
+    }
+
+    loadCityRankings();
   }
 
   const { error: storageError } = await supabaseClient
@@ -406,10 +462,21 @@ async function uploadToSupabase(file, cityName, storagePath) {
     }
     console.log('Image record inserted to database for', cityName, dbData);
 
-    // Increment city score in rankings
-    await supabaseClient.rpc('increment_city_score', {
-      city_name: cityName
-    });
+    // Increment city score in rankings and log result
+    try {
+      const { data: rpcIncData, error: rpcIncError } = await supabaseClient.rpc('increment_city_score', {
+        city_name: cityName
+      });
+      if (rpcIncError) {
+        console.error('RPC increment_city_score failed:', rpcIncError);
+      } else {
+        console.log('RPC increment_city_score result:', rpcIncData);
+      }
+    } catch (e) {
+      console.error('Error calling RPC increment_city_score:', e);
+    }
+
+    try { loadCityRankings(); } catch (e) { console.warn('Failed to refresh rankings after increment:', e); }
 
     // Update last sync time so we don't re-download our own upload
     setLastSyncTime(timestamp);

@@ -14,13 +14,16 @@
     <div id="intro-overlay" class="intro-overlay hidden">
         <div class="intro-modal">
         <h2>🌍 Welcome to the World Photo Map</h2>
-        <p>
+        <div>
+            <p>
             1. Click any city on the globe indicated by the dots<br>
             2. Upload images for that city - No one will stop you to upload whatever you want<br>
-            3. Let's see which city we want it to be the most popular!<br>
+            3. Let's see which city will be the most popular!<br>
             Note: There is no restriction or moderation<br>
-            The backend database is free and 100% public<br>
-        </p>
+            The backend database is free and 100% public.<br>
+            The image upload is completely anonymous. There is no personal data collected.<br>
+            </p>
+        </div> 
         <button id="intro-close-btn" class="intro-btn">Got it!</button>
         </div>
     </div>
@@ -61,5 +64,19 @@
         <ol id="ranking-list"></ol>
     </div>
     <script src="script-ranking.js" defer></script>
+
+    <!-- Adding the timer functionality -->
+    <div class="expiry-wrapper">
+        <div id="expiry-label">Loading…</div>
+        <div class="expiry-bar">
+            <div id="expiry-fill"></div>
+        </div>
+        <div class="hover-text">
+            <p>Do you know that the server is free?</p>
+            <p>This means that after two weeks of inactivity, the database will be deleted.</p>
+            <p>Keep uploading to keep the server alive!</p>
+        </div>
+    </div>
+    <script src="script-timer.js" defer></script>
 </body>
 </html>

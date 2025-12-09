@@ -476,7 +476,10 @@ async function uploadToSupabase(file, cityName, storagePath) {
       console.error('Error calling RPC increment_city_score:', e);
     }
 
-    try { loadCityRankings(); } catch (e) { console.warn('Failed to refresh rankings after increment:', e); }
+    try { 
+      loadCityRankings(); 
+      loadExpirationProgress();
+    } catch (e) { console.warn('Failed to refresh rankings after increment:', e); }
 
     // Update last sync time so we don't re-download our own upload
     setLastSyncTime(timestamp);
